@@ -1,0 +1,26 @@
+{
+  "name": "oni-save-reports",
+  "version": "0.1.0",
+  "description": "Pull the reports directly from an ONI save file.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "ONI",
+    "Oxygen",
+    "Not",
+    "Included",
+    "Reports",
+    "Save",
+    "Data"
+  ],
+  "author": "DesktopCoder1407",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "multer": "^1.4.1",
+    "oni-save-parser": "^5.1.5"
+  }
+}

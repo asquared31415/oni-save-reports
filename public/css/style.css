@@ -1,0 +1,47 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #E1E1E1;
+    width: 75%;
+    margin: auto;
+}
+
+header {
+    margin: 0;
+    text-align: center;
+    background-color: #3B4483;
+    padding: 5px;
+}
+
+main {
+    margin: 0;
+    padding: 15px;
+    background-color: #888888;
+}
+
+main form {
+    width: 35%;
+    margin: auto;
+}
+
+form .center {
+    text-align: center;
+}
+
+.button {
+    background-color: rgb(159, 162, 185);
+    border: 3px solid rgb(159, 162, 185);
+    border-radius: 3px;
+    font-size: 18px;
+}
+
+footer {
+    margin: 0;
+    padding: 15px;
+    background-color: grey;
+    color: white;
+}
+
+footer a {
+    color: white;
+}
