@@ -31,7 +31,7 @@ app.post('/', upload.single('save'), function (req, res, next) {
     }
 });
 
-//Run the app on port 3000.
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
+//Run the app on process.env.PORT
+app.listen(process.env.PORT, function () {
+    console.log('App listening on process.env.PORT')
 });
