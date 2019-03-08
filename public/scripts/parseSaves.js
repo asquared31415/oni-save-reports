@@ -1,4 +1,5 @@
 const fs = require('fs');
+const os = require('os');
 const {parseSaveGame} = require('oni-save-parser');
 
 //This function takes a save file and outputs a CSV. The callback excecutes when the file has completely finished parsing.
@@ -15,7 +16,10 @@ exports.parseToCSV = function(saveFile, _callback) {
         "Power Usage", "Power Wasted"];
 
     //Save the file in a temporary location before downloading.
-    const saveWriter = fs.createWriteStream("tmp/temp.csv");
+    const saveLocation = os.tmpdir() + "\\oni-save-reports";
+    fs.mkdir(saveLocation, { recursive: true }, (err) => { if (err) throw err; });
+
+    const saveWriter = fs.createWriteStream(saveLocation + "/temp.csv");
 
     saveWriter.write('Cycle, Dupes, Calories Added, Calories Removed, Net Calories, Stress Added, Stress Removed, Net Stress, Total Germs, Chores Added, Chores Removed, Net Chores, Avg. Working Time, Avg. Travel Time, Avg. Personal Time, Idle Time, Oxygen Added, Oxygen Removed, Net Oxygen, Power Added, Power Removed, Net Power Usage, Power Wasted\n');
     saveWriter.write(' ,  , [kcal], [kcal], [kcal], [Total Stress], [Total Stress], [Total Stress], [All Dupes],  ,  ,  , [Per Dupe], [Per Dupe], [Per Dupe], [Total Idle Time], [kg], [kg], [kg], [kJ], [kJ], [kJ], [kJ]\n');
@@ -104,7 +108,11 @@ exports.parseToText = function (saveFile, _callback) {
         "Power Usage", "Power Wasted"];
 
     //Save the file in a temporary location before downloading.
-    const saveWriter = fs.createWriteStream("tmp/temp.txt");
+    const saveLocation = os.tmpdir() + "\\oni-save-reports";
+    fs.mkdir(saveLocation, { recursive: true }, (err) => { if (err) throw err; });
+
+    const saveWriter = fs.createWriteStream(saveLocation + "/temp.txt");
+    //const saveWriter = fs.createWriteStream("tmp/temp.txt");
 
     allReports.templateData.dailyReports.forEach(reportDay => { 
         saveWriter.write('Cycle ' + reportDay.day + '\n');
