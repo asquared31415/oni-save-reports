@@ -16,7 +16,7 @@ exports.parseToCSV = function(saveFile, _callback) {
         "Power Usage", "Power Wasted"];
 
     //Save the file in a temporary location before downloading.
-    const saveLocation = os.tmpdir() + "\\oni-save-reports";
+    const saveLocation = os.tmpdir() + "/oni-save-reports";
     fs.mkdir(saveLocation, { recursive: true }, (err) => { if (err) throw err; });
 
     const saveWriter = fs.createWriteStream(saveLocation + "/temp.csv");
