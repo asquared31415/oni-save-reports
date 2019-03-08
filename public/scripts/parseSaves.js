@@ -16,7 +16,7 @@ exports.parseToCSV = function(saveFile, _callback) {
         "Power Usage", "Power Wasted"];
 
     //Save the file in a temporary location before downloading.
-    const saveLocation = "/tmp";
+    const saveLocation = __dirname + "/tmp";
     fs.mkdir(saveLocation, { recursive: true }, (err) => { if (err) throw err; });
 
     const saveWriter = fs.createWriteStream(saveLocation + "/temp.csv");
@@ -108,7 +108,7 @@ exports.parseToText = function (saveFile, _callback) {
         "Power Usage", "Power Wasted"];
 
     //Save the file in a temporary location before downloading.
-    const saveLocation = "/tmp";
+    const saveLocation = __dirname + "/tmp";
     fs.mkdir(saveLocation, { recursive: true }, (err) => { if (err) throw err; });
 
     const saveWriter = fs.createWriteStream(saveLocation + "/temp.txt");
