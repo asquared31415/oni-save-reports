@@ -17,14 +17,12 @@ app.get('/', function (req, res) {
 
 //Document Upload
 app.post('/', upload.single('save'), function (req, res, next) {
-    //Handle text file.
     if (req.body.outputType === "text") {
         parser.parseToText(req.file, function() { 
             //On completion of the parse, download the output file from the temp folder.
             res.download(path.join(os.tmpdir(), "oni-save-reports", "temp.txt"), req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.txt");
         })
     }
-    //Handle CSV file.
     else if (req.body.outputType === "csv") {
         parser.parseToCSV(req.file, function() {
             //On completion of the parse, download the output file from the temp folder.
@@ -33,7 +31,7 @@ app.post('/', upload.single('save'), function (req, res, next) {
     }
 });
 
-//Run the app on process.env.PORT
+//Run the app on process.env.PORT or port 3000.
 app.listen(process.env.PORT || 3000, function () {
-    console.log('App listening on process.env.PORT')
+    console.log('App listening on process.env.PORT and port 3000.')
 });
