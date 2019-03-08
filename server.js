@@ -1,6 +1,6 @@
 var express = require('express');
 var multer  = require('multer');
-var path = requre('path');
+var path = require('path');
 var parser = require('./public/scripts/parseSaves.js');
 
 //Set multer to store the inputted files as a buffer object in memory.
