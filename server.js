@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 app.post('/', upload.single('save'), function (req, res, next) {
     //Handle text file.
     if (req.body.outputType === "text") {
-        parser.parseToText(req.file, function() {
+        parser.parseToText(req.file, function() { 
             //On completion of the parse, download the output file from the temp folder.
             res.download(__dirname + "/tmp/temp.txt", req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.txt");
         })
