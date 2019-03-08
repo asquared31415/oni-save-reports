@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-//const os = require('os');
+const os = require('os');
 const {parseSaveGame} = require('oni-save-parser');
 
 //This function takes a save file and outputs a CSV. The callback excecutes when the file has completely finished parsing.
@@ -17,7 +17,7 @@ exports.parseToCSV = function(saveFile, _callback) {
         "Power Usage", "Power Wasted"];
 
     //Save the file in a temporary location before downloading.
-    const saveLocation = path.join(".", "tmp");
+    const saveLocation = path.join(os.tmpdir(), "oni-save-reports");
     fs.mkdir(saveLocation, { recursive: true }, (err) => { if (err) throw err; });
 
     const saveWriter = fs.createWriteStream(path.join(saveLocation, "temp.csv"));
@@ -109,7 +109,7 @@ exports.parseToText = function (saveFile, _callback) {
         "Power Usage", "Power Wasted"];
 
     //Save the file in a temporary location before downloading.
-    const saveLocation = path.join(".", "tmp");
+    const saveLocation = path.join(os.tmpdir(), "oni-save-reports");
     fs.mkdir(saveLocation, { recursive: true }, (err) => { if (err) throw err; });
 
     const saveWriter = fs.createWriteStream(path.join(saveLocation, "temp.txt"));
