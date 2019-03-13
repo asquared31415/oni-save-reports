@@ -1,6 +1,5 @@
 var express = require('express');
 var multer  = require('multer');
-var os = require('os');
 var path = require('path');
 var parser = require('./public/scripts/parseSaves.js');
 
@@ -17,21 +16,22 @@ app.get('/', function (req, res) {
 
 //Document Upload
 app.post('/', upload.single('save'), function (req, res, next) {
-    if (req.body.outputType === "text") {
+    if (req.body.submitTXT) {
         parser.parseToText(req.file, function(file) {
-            //On completion of the parse, download the output file from the temp folder.
+            //Download the output file on parse completion.
             res.download(file, req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.txt");
         })
     }
-    else if (req.body.outputType === "csv") {
+    else if (req.body.submitCSV) {
         parser.parseToCSV(req.file, function(file) {
-            //On completion of the parse, download the output file from the temp folder.
+            //Download the output file on parse completion.
             res.download(file, req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.csv");
         })
     }
 });
 
 //Run the app on process.env.PORT or port 3000.
-app.listen(process.env.PORT || 3000, function () {
-    console.log('App listening on process.env.PORT and port 3000.')
+const port = process.env.PORT || 3000;
+app.listen(port, function () {
+    console.log('App listening on ' + port);
 });
