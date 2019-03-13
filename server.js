@@ -18,15 +18,15 @@ app.get('/', function (req, res) {
 //Document Upload
 app.post('/', upload.single('save'), function (req, res, next) {
     if (req.body.outputType === "text") {
-        parser.parseToText(req.file, function() { 
+        parser.parseToText(req.file, function(file) {
             //On completion of the parse, download the output file from the temp folder.
-            res.download(path.join(os.tmpdir(), "oni-save-reports", "temp.txt"), req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.txt");
+            res.download(file, req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.txt");
         })
     }
     else if (req.body.outputType === "csv") {
-        parser.parseToCSV(req.file, function() {
+        parser.parseToCSV(req.file, function(file) {
             //On completion of the parse, download the output file from the temp folder.
-            res.download(path.join(os.tmpdir(), "oni-save-reports", "temp.csv"), req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.csv");
+            res.download(file, req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.csv");
         })
     }
 });
