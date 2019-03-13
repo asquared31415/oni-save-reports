@@ -86,7 +86,7 @@ exports.parseToCSV = function(saveFile, _callback) {
         saveWriter.write('\n');
     });
 
-    saveWriter.close();
+    saveWriter.end();
 
     //Wait for the file to completely finish parsing before sending the callback.
     saveWriter.on('finish', function () {
@@ -136,7 +136,7 @@ exports.parseToText = function (saveFile, _callback) {
         })
     });
 
-    saveWriter.close();
+    saveWriter.end();
 
     //Wait for the file to completely finish parsing before sending the callback.
     saveWriter.on('finish', function () {
