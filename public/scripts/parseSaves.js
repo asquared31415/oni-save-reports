@@ -27,7 +27,10 @@ exports.parseToCSV = function(saveFile, _callback) {
 
     allReports.templateData.dailyReports.forEach(reportDay => {
         //Find the number of dupes for each day by pulling the child entries from the Stress Change report.
-        const numDupes = reportDay.reportEntries[2].contextEntries.elements.filter(x => x !== null).length;
+        var numDupes = 0;
+        if(reportDay.reportEntries[2].contextEntries.elements !== null) {
+            numDupes = reportDay.reportEntries[2].contextEntries.elements.filter(x => x !== null).length;
+        }
         
         saveWriter.write(reportDay.day + ", " + numDupes + ", ");
         
@@ -86,11 +89,8 @@ exports.parseToCSV = function(saveFile, _callback) {
         saveWriter.write('\n');
     });
 
-    saveWriter.close();
-
-    //Wait for the file to completely finish parsing before sending the callback.
-    saveWriter.on('finish', function () {
-        console.log('File Parse Completed');
+    saveWriter.end(function() {
+        console.log('File Write Completed');
         _callback();
     });
 }
@@ -136,11 +136,8 @@ exports.parseToText = function (saveFile, _callback) {
         })
     });
 
-    saveWriter.close();
-
-    //Wait for the file to completely finish parsing before sending the callback.
-    saveWriter.on('finish', function () {
-        console.log('File Save Completed');
+    saveWriter.end(function() {
+        console.log('File Write Completed');
         _callback();
     });
 } 
