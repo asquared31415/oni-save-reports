@@ -27,7 +27,10 @@ exports.parseToCSV = function(saveFile, _callback) {
 
     allReports.templateData.dailyReports.forEach(reportDay => {
         //Find the number of dupes for each day by pulling the child entries from the Stress Change report.
-        const numDupes = reportDay.reportEntries[2].contextEntries.elements.filter(x => x !== null).length;
+        var numDupes = 0;
+        if(reportDay.reportEntries[2].contextEntries.elements !== null) {
+            numDupes = reportDay.reportEntries[2].contextEntries.elements.filter(x => x !== null).length;
+        }
         
         saveWriter.write(reportDay.day + ", " + numDupes + ", ");
         
