@@ -7,3 +7,9 @@ This is useful for people who want to obtain complicated, precise data about wha
 * Select the `Upload Save File` button and select the save file to parse
 * Choose `Download txt` or `Download csv` to download the approproate file format
 * Let the parser do its magic!
+
+## What's ahead?
+* Support for older saves.
+* Ability to select which cycles are output.
+* Ability to further drill down on report data.
+* Drag & Drop feature

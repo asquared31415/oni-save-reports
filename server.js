@@ -1,6 +1,5 @@
 var express = require('express');
 var multer  = require('multer');
-var os = require('os');
 var path = require('path');
 var parser = require('./public/scripts/parseSaves.js');
 
@@ -17,23 +16,24 @@ app.get('/', function (req, res) {
 
 //Document Upload
 app.post('/', upload.single('save'), function (req, res, next) {
-    //Handle text file.
-    if (req.body.outputType === "text") {
-        parser.parseToText(req.file, function() { 
-            //On completion of the parse, download the output file from the temp folder.
-            res.download(path.join(os.tmpdir(), "oni-save-reports", "temp.txt"), req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.txt");
+    if (req.body.submitTXT) {
+		const fileName = Math.random().toString().substring(2);
+        parser.parseToText(req.file, fileName, function(file) {
+            //Download the output file on parse completion.
+            res.download(file, req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.txt");
         })
     }
-    //Handle CSV file.
-    else if (req.body.outputType === "csv") {
-        parser.parseToCSV(req.file, function() {
-            //On completion of the parse, download the output file from the temp folder.
-            res.download(path.join(os.tmpdir(), "oni-save-reports", "temp.csv"), req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.csv");
+    else if (req.body.submitCSV) {
+		const fileName = Math.random().toString().substring(2);
+        parser.parseToCSV(req.file, fileName, function(file) {
+            //Download the output file on parse completion.
+            res.download(file, req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.csv");
         })
     }
 });
 
-//Run the app on process.env.PORT
-app.listen(process.env.PORT || 3000, function () {
-    console.log('App listening on process.env.PORT')
+//Run the app on process.env.PORT or port 3000.
+const port = process.env.PORT || 3000;
+app.listen(port, function () {
+    console.log('App listening on ' + port);
 });
