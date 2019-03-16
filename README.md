@@ -9,3 +9,4 @@ Upload a file to the program, then select the output form you want. (Text or CSV
 * Support for older saves.
 * Ability to select which cycles are output.
 * Ability to further drill down on report data.
+* Drag & Drop feature
