@@ -1,9 +1,12 @@
 # oni-save-reports
-Read an ONI save file and output the reports in an easily analyzed format.
+Reads an ONI save file and output the reports in a pretty format.
 This is useful for people who want to obtain complicated, precise data about what is going on in their colony.
 
-## How to use
-Upload a file to the program, then select the output form you want. (Text or CSV)
+# How to use
+* Online version hosted at http://oni-save-reports.herokuapp.com/
+* Select the `Upload Save File` button and select the save file to parse
+* Choose `Download txt` or `Download csv` to download the approproate file format
+* Let the parser do its magic!
 
 ## What's ahead?
 * Support for older saves.
