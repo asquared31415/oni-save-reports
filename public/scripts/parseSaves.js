@@ -11,22 +11,22 @@ const reportTypes = [null, "Calorie Generation",
     "Power Usage", "Power Wasted"];
 
 //This function takes a save file and outputs a CSV. The callback excecutes when the file has completely finished parsing.
-exports.parseToCSV = function(saveFile, _callback) {
-    parseReports(saveFile, _callback, writeToCSV);
+exports.parseToCSV = function(saveFile, fileName, _callback) {
+    parseReports(saveFile, fileName, _callback, writeToCSV);
 }
 
 //This function takes a save file and outputs a Text file. The callback excecutes when the file has completely finished parsing.
-exports.parseToText = function (saveFile, _callback) {
-    parseReports(saveFile, _callback, writeToText);
+exports.parseToText = function (saveFile, fileName, _callback) {
+    parseReports(saveFile, fileName, _callback, writeToText);
 } 
 
-function parseReports(saveFile, _callback, write) {
+function parseReports(saveFile, fileName, _callback, write) {
     const saveData = parseSaveGame(toArrayBuffer(saveFile.buffer));
     const saveGame = saveData.gameObjects.filter( obj => {return obj.name === "SaveGame"})[0];
     const allReports = saveGame.gameObjects[0].behaviors.filter(obj => {return obj.name === "ReportManager"})[0];
 
     //Save the file in a temporary location before downloading.
-    const tempFile = getTempFile();
+    const tempFile = getTempFile(fileName);
     const saveWriter = fs.createWriteStream(tempFile);
 
     write(saveWriter, allReports.templateData.dailyReports);
@@ -132,10 +132,10 @@ function writeToText(saveWriter, reports) {
     });
 }
 
-function getTempFile() {
+function getTempFile(fileName) {
     const saveLocation = path.join(os.tmpdir(), "oni-save-reports");
     fs.mkdir(saveLocation, { recursive: true }, (err) => { if (err) throw err; });
-    return path.join(saveLocation, "temp.txt");
+    return path.join(saveLocation, fileName);
 }
 
 //Function to change a buffer object to an ArrayBuffer.

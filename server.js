@@ -17,13 +17,15 @@ app.get('/', function (req, res) {
 //Document Upload
 app.post('/', upload.single('save'), function (req, res, next) {
     if (req.body.submitTXT) {
-        parser.parseToText(req.file, function(file) {
+		const fileName = Math.random().toString().substring(2);
+        parser.parseToText(req.file, fileName, function(file) {
             //Download the output file on parse completion.
             res.download(file, req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.txt");
         })
     }
     else if (req.body.submitCSV) {
-        parser.parseToCSV(req.file, function(file) {
+		const fileName = Math.random().toString().substring(2);
+        parser.parseToCSV(req.file, fileName, function(file) {
             //Download the output file on parse completion.
             res.download(file, req.file.originalname.substring(0, req.file.originalname.length - 4) + " Reports.csv");
         })
