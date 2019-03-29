@@ -23,9 +23,8 @@ form {
 }
 
 .button {
-	background-color: hsl(233, 38%, 55%);
-	border: 3px solid hsl(233, 38%, 55%);
-	/* color: black; */
+	background-color: #616BB8;
+	border: 3px solid #616BB8;
 	border-radius: 3px;
 	font-size: 18px;
 }
