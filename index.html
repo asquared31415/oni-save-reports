@@ -1,80 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>ONI Save Reports</title>
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        
-        <script type="text/javascript">
-            function fileSelect(){
-                if(document.getElementById('fileUpload').files[0]) {
-                    document.getElementById('uploadButton').value='Uploaded';
-                    document.getElementById('uploadButton').disabled = true;
-                }
-            }
-        </script>
-        
-        <script type="text/javascript">
-            window.onload = function loadHandlers(){
-                dropArea = document.getElementById('drop-area');
-                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                    dropArea.addEventListener(eventName, preventDefaults, false)
-                });
-                dropArea.addEventListener('drop', handleDrop, false);
-                ['dragenter', 'dragover'].forEach(eventName => {
-                    dropArea.addEventListener(eventName, highlight, false)
-                });
-                ['dragleave', 'drop'].forEach(eventName => {
-                    dropArea.addEventListener(eventName, unhighlight, false)
-                });
-            }
-
-            function preventDefaults (e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            
-            function highlight(e) {
-                document.getElementById("uploadButton").style.backgroundColor = "rgb(194, 197, 220)";
-            }
-            
-            function unhighlight(e) {
-                document.getElementById("uploadButton").style.backgroundColor = "";
-            }
-            
-            function handleDrop(e) {
-                let dt = e.dataTransfer;
-                document.getElementById("fileUpload").files = dt.files;
-                fileSelect();
-            }
-        </script>
-    </head>
-  <body>
-        <header>
-            <h1>Oxygen Not Included Save Reports</h1>
-            <h3>Get your reports in your choice of file straight from your save game!</h3>
-        </header>
-        <main>
-            <p></p>
-            <form action="/" method="post" enctype="multipart/form-data">
-                <div class="center">
-                    <div id=drop-area>
-                        <input type="file" name="save" id="fileUpload" accept=".sav" style="display: none;" onchange="fileSelect()" required>
-                        <input type="button" class="button" id="uploadButton" name="openUpload" value="Upload Save File" onclick="document.getElementById('fileUpload').click();"><br/>
-                    </div>
-                </div>
-                <h4>Select your output type:</h4>
-                <input type="radio" name="outputType" value="text" required> Text File<br>
-                <input type="radio" name="outputType" value="csv" required> CSV<br>
-                <!-- <h4>Select some extra options:</h4> -->
-                <!-- <input type="checkbox" name="extra1" value="expandedReports"> Show a more expanded report screen, similar to the ingame reports menu.<br><br> -->
-                <!-- <input type="checkbox" name="extra2" value="expandedData"> Show extra data. (Similar to ingame dropdown. WIP)<br> -->
-                <input type="submit" value="Submit" class="submitButton">
-            </form>
-        </main>
-        <footer>
-            <p>Built by DesktopCoder1407 with (lots of) help from asquared31415, shibumi, Saber, Nolda, and LotheronPrime. Made for <a href="https://www.youtube.com/Brothgar" target="_blank">Brothgar</a>. Built using <a href="https://github.com/RoboPhred/oni-save-parser" target="_blank">oni-save-parser</a> and <a href="https://nodejs.org" target="_blank">Node.js</a>.</p>
-        </footer>
-  </body>
+	<head>
+		<meta charset="UTF-8">
+		<title>ONI Save Reports</title>
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+  	</head>
+	<body>
+		<header>
+			<h1>Oxygen Not Included Save Reports</h1>
+			<p>Pull the reports straight from your save game into your choice of file & format!</p>
+		</header>
+		<main>
+			<form action="/" method="post" enctype="multipart/form-data">
+				<p><b>**Only saves from QoL MK2 or later work in this parser!!**</b></p>
+				<input type="file" name="save" id="fileUpload" accept=".sav" style="display: none;" 
+					onchange="if(this.files[0]) {button = document.getElementById('uploadButton'); button.disabled = true; button.value='Uploaded';}" required>
+				<input type="button" class="button" id="uploadButton" value="Upload Save File" onclick="document.getElementById('fileUpload').click();">
+				<br/>
+				<br/>
+				<!-- <h4>Select some extra options:</h4> -->
+				<!-- <input type="checkbox" name="extra1" value="expandedReports"> Show a more expanded report screen, similar to the ingame reports menu.<br><br> -->
+				<!-- <input type="checkbox" name="extra2" value="expandedData"> Show extra data. (Similar to ingame dropdown. WIP)<br> -->
+				<input type="submit" name="submitCSV" value="Download CSV File" class="button">
+				<input type="submit" name="submitTXT" value="Download Text File" class="button">
+			</form>
+		</main>
+		<footer>
+			<p>Built by DesktopCoder1407 with (lots of) help from asquared31415, shibumi, Saber, Nolda, and LotheronPrime. Made for <a href="https://www.youtube.com/Brothgar" target="_blank">Brothgar</a>.</p>
+			<p><a href="https://github.com/DesktopCoder1407/oni-save-reports" target="_blank">View on Github</a></p>
+		</footer>
+	</body>
 </html>
