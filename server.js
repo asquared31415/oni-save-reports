@@ -9,6 +9,7 @@ var upload = multer({ storage: storage });
 
 var app = express()
 app.use('/public', express.static(path.join(__dirname + '/public')));
+app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
@@ -37,21 +38,17 @@ app.post('/', upload.single('save'), function (req, res, next) {
 });
 
 app.use(function (req, res, next) {
-    console.log("start");
-    let err = new Error('Page Not Found');
+    let err = new Error('Resource Not Found');
     err.statusCode = 404;
     err.is404 = true;
     next(err);
-    console.log("end");
 });
 
 app.use(function (err, req, res, next) {
     if (res.headersSent) {
         return next(err);
-        console.log("headers");
     }
     console.log("[ERROR] " + err.message);
-    console.log("\t" + err.cause);
 
     if (err.is404) {
         // 404
@@ -59,7 +56,7 @@ app.use(function (err, req, res, next) {
     } else {
         // default error handling
         res.status(err.status || 500);
-        res.send("<html><body><h1>Something went wrong</h1><p>" + err.message + "</p></body></html>");
+		res.render('errors', {errmsg: err.message});
     }
 
     
