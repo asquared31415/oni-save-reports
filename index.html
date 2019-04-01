@@ -1,46 +1,61 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>ONI Save Reports</title>
-		<link rel="stylesheet" type="text/css" href="/css/style.css">
-        
-        <script>
-            function onFileChange() {
-                if (fileForm.files[0]) {
-                    button.disabled = true;
-                    button.value = 'Uploaded';
-                }
-            }
+<head>
+    <meta charset="UTF-8">
+    <title>ONI Save Reports</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
 
-            window.onload = function registerHandlers() {
-                dropArea = document.getElementById('drag-area');
-                button = document.getElementById('uploadButton');
-                fileForm = document.getElementById('fileUpload');
-                dropArea.addEventListener('dragenter', dragover);
-                dropArea.addEventListener('dragover', dragover);
-                dropArea.addEventListener('dragleave', dragleave);
-                dropArea.addEventListener('drop', drop);
-            }
+    <link rel="apple-touch-icon" sizes="57x57" href="/public/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/public/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/public/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/public/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/public/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/public/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/public/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/public/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/public/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/public/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 
-            function dragover(e) {
-                e.preventDefault();
-                button.style.backgroundColor = '#929AD8';
+    <script>
+        function onFileChange() {
+            if (fileForm.files[0]) {
+                button.disabled = true;
+                button.value = 'Uploaded';
             }
+        }
 
-            function drop(e) {
-                dragleave(e);
-                let dt = e.dataTransfer;
-                fileForm.files = dt.files;
-                onFileChange();
-            }
+        window.onload = function registerHandlers() {
+            dropArea = document.getElementById('drag-area');
+            button = document.getElementById('uploadButton');
+            fileForm = document.getElementById('fileUpload');
+            dropArea.addEventListener('dragenter', dragover);
+            dropArea.addEventListener('dragover', dragover);
+            dropArea.addEventListener('dragleave', dragleave);
+            dropArea.addEventListener('drop', drop);
+        }
 
-            function dragleave(e) {
-                e.preventDefault();
-                button.style.backgroundColor = '#616BB8';
-            }
-        </script>
-  	</head>
+        function dragover(e) {
+            e.preventDefault();
+            button.style.backgroundColor = '#929AD8';
+        }
+
+        function drop(e) {
+            dragleave(e);
+            let dt = e.dataTransfer;
+            fileForm.files = dt.files;
+            onFileChange();
+        }
+
+        function dragleave(e) {
+            e.preventDefault();
+            button.style.backgroundColor = '#616BB8';
+        }
+    </script>
+</head>
 	<body>
 		<header>
 		    	<h1>Oxygen Not Included Save Reports</h1>
