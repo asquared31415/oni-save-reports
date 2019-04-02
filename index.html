@@ -40,7 +40,7 @@
 
         function dragover(e) {
             e.preventDefault();
-            button.style.backgroundColor = '#929AD8';
+            button.classList.add("dragging");
         }
 
         function drop(e) {
@@ -52,34 +52,37 @@
 
         function dragleave(e) {
             e.preventDefault();
-            button.style.backgroundColor = '#616BB8';
+            button.classList.remove("dragging");
         }
     </script>
 </head>
 	<body>
-		<header>
-		    	<h1>Oxygen Not Included Save Reports</h1>
-			<p>Pull the reports straight from your save game into your choice of file & format!</p>
-		</header>
-		<main>
-			<form action="/" method="post" enctype="multipart/form-data">
-				<p><b>**Only saves from QoL MK2 or later work in this parser!!**</b></p>
-				<div id="drag-area">
-					<input type="file" name="save" id="fileUpload" accept=".sav" style="display: none;" onchange="onFileChange()" required>
-					<input type="button" class="button hvr-grow" id="uploadButton" value="Upload Save File" onclick="document.getElementById('fileUpload').click();">
-				</div>
-				<br/>
-				<br/>
-				<!-- <h4>Select some extra options:</h4> -->
-				<!-- <input type="checkbox" name="extra1" value="expandedReports"> Show a more expanded report screen, similar to the ingame reports menu.<br><br> -->
-				<!-- <input type="checkbox" name="extra2" value="expandedData"> Show extra data. (Similar to ingame dropdown. WIP)<br> -->
-				<input type="submit" name="submitCSV" value="Download CSV File" class="button">
-				<input type="submit" name="submitTXT" value="Download Text File" class="button">
-			</form>
-		</main>
-		<footer>
-			<p>Built by DesktopCoder1407 with (lots of) help from asquared31415, shibumi, Saber, Nolda, and LotheronPrime. Made for <a href="https://www.youtube.com/Brothgar" target="_blank">Brothgar</a>.</p>
-			<p><a href="https://github.com/DesktopCoder1407/oni-save-reports" target="_blank">View on Github</a></p>
-		</footer>
+        <div id="container">
+		    <header>
+		    	    <h1>Oxygen Not Included Save Reports</h1>
+			    <p>Pull the reports straight from your save game into your choice of file & format!</p>
+		    </header>
+		    <main>
+			    <form action="/" method="post" enctype="multipart/form-data">
+				    <p><b>**Only saves from QoL MK2 or later work in this parser!!**</b></p>
+				    <div id="drag-area">
+					    <input type="file" name="save" id="fileUpload" accept=".sav" style="display: none;" onchange="onFileChange()" required>
+					    <input type="button" class="button hvr-grow" id="uploadButton" value="Upload Save File" onclick="document.getElementById('fileUpload').click();">
+				    </div>
+				    <br/>
+				    <br/>
+				    <!-- <h4>Select some extra options:</h4> -->
+				    <!-- <input type="checkbox" name="extra1" value="expandedReports"> Show a more expanded report screen, similar to the ingame reports menu.<br><br> -->
+				    <!-- <input type="checkbox" name="extra2" value="expandedData"> Show extra data. (Similar to ingame dropdown. WIP)<br> -->
+				    <input type="submit" name="submitCSV" value="Download CSV File" class="button">
+				    <input type="submit" name="submitTXT" value="Download Text File" class="button">
+			    </form>
+		    </main>
+		    <footer>
+			    <p>Built by DesktopCoder1407 with (lots of) help from asquared31415, shibumi, Saber, Nolda, and LotheronPrime. Made for <a href="https://www.youtube.com/Brothgar" target="_blank">Brothgar</a>.</p>
+                <p>BG Art by <a href="https://www.reddit.com/user/TheDelposenGuy">/u/TheDelposenGuy</a></p>
+			    <p><a href="https://github.com/DesktopCoder1407/oni-save-reports" target="_blank">View on Github</a></p>
+		    </footer>
+        </div>
 	</body>
 </html>
